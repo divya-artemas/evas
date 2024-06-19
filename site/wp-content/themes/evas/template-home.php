@@ -74,7 +74,7 @@ get_header();
                     $service_image   =  get_sub_field('service_image'); 
                     $service_name    =  get_sub_field('service_name');  
                     $service_link    =  get_sub_field('service_link');                    
-              ?> 
+            ?> 
             <div class="service-flex" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo $i;?>00">
               <a href="<?php echo $service_link;?>">              
                   <img src="<?php echo $service_image;?>" alt="" />
@@ -102,40 +102,28 @@ get_header();
     <div class="resources">
       <div class="medium-container">
         <div class="content-block" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">
-          <b>Resources</b>
-          <h4>
-            With Evas international you won’t be alone on your business
-            journey.
-          </h4>
+          <b><?php echo get_field('r_title');?></b>
+          <h4><?php echo get_field('r_heading');?></h4>
         </div>
         <div class="resources-book flex">
-          <div class="resources-book-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-            <img src="img/book-three.png" alt="" />
-
+        <?php
+                $i=1;                  
+                while( have_rows('r_downloads') ): the_row();
+                    $r_image     =  get_sub_field('r_image'); 
+                    $r_name      =  get_sub_field('r_name');  
+                    $r_link_text =  get_sub_field('r_link_text');  
+                    $r_file      =  get_sub_field('r_file');                   
+            ?> 
+          <div class="resources-book-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo $i;?>00">
+            <img src="<?php echo $r_image;?>" alt="" />
             <div class="resources-content">
-              <strong>Evas International Newsletter –  April 2024
-              </strong>
-              <a href="#">READ Newsletter</a>
+              <strong><?php echo $r_name;?></strong>
+              <a href="<?php echo $r_file;?>"><?php echo $r_link_text;?></a>
             </div>
           </div>
-          <div class="resources-book-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <img src="img/book-two.png" alt="" />
-            <div class="resources-content">
-              <strong>Handbook on UAQ Corporate Tax
-              </strong>
-              <a href="#">DOwnload</a>
-            </div>
-          </div>
-          <div class="resources-book-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-            <img src="img/book-one.png" alt="" />
-            <div class="resources-content">
-              <strong>Around The Law In 100 Questions
-              </strong>
-              <a href="#">DOwnload</a>
-            </div>
-          </div>
+          <?php $i++; endwhile;?>    
         </div>
-        <a href="#" class="btn fill">SEE ALL RESOURCES</a>
+        <a href="<?php echo get_field('re_link');?>" class="btn fill"><?php echo get_field('re_link_text');?></a>
       </div>
     </div>
     <!-- Resources-section-End-->
