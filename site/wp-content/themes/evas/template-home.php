@@ -130,8 +130,8 @@ get_header();
    <!-- News-letter-start-->
    <div class="newsletter" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">
     <div class="small-container">
-      <span>Evas International Newsletter –  April 2024</span>
-      <h3>AI in Finance & Accounting</h3>
+      <span><?php echo get_field('news_title');?></span>
+      <h3><?php echo get_field('news_heading');?></h3>
       <div class="news-flex">
         <input type="email" name="" id="" placeholder="Enter EMAIL ID to download newsletter ">
         <input type="submit" value="READ NEWSLETTER">
@@ -146,32 +146,52 @@ get_header();
       <div class="news-letter"> 
       <div class="flex" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">
         <div class="left">
-         <h2>We're here to 
-          help you thrive.</h2>
+         <h2><?php echo get_field('in_title');?></h2>
         </div>
         <div class="right">
-          <b>Stay current with our latest insights</b>
+          <b><?php echo get_field('in_heading');?></b>
           <input type="email" placeholder="Enter your email id">
-          <img src="img/arrow.png" alt="">
+          <img src="<?php bloginfo("template_url")?>/img/arrow.png" alt="">
         </div>
       </div>
       </div>
       <div class="insight-list flex">
- <div class="insight-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-  <img src="img/insight-one.jpg" alt="">
-  <p>Taming the Tax Beast: Essential Tax Tips for Businesses and Individuals</p>
-  <a href="#" class="btn line black">Learn more</a>
- </div>
- <div class="insight-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-  <img src="img/insight-two.jpg" alt="">
-  <p>Balance Sheets and Beyond: A Beginner's Guide to Understanding Financial Statements</p>
-  <a href="#" class="btn line black">Learn more</a>
- </div>
- <div class="insight-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-  <img src="img/insight-three.jpg" alt="">
-  <p>Decoding International Accounting Standards: What You Need to Know</p>
-  <a href="#" class="btn line black">Learn more</a>
- </div>
+      <?php
+             $args = array(         
+                'post_status' => 'publish',
+                'posts_per_page' => 3,
+                'post_type' => 'blogs'	
+                
+                );
+            
+            $blogs_query = new WP_Query( $args ); ?>
+      <?php                    
+                
+                    if( $blogs_query->have_posts() ) {      
+                      $i=1;                                                 
+                        while ($blogs_query->have_posts()) : $blogs_query->the_post(); 
+                            $btitle          =   get_the_title(); 
+                            $bimage          =   get_field('bl_thumbnail_image');  
+                            
+                            // $nimage          =   wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full'); 
+                            // $nimaged         =   $nimage[0]; 
+                                                      
+                        $bpermalink      =   get_the_permalink();                             
+                ?>
+ <div class="insight-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo $i;?>00">
+  <img src="<?php echo $bimage;?>" alt="">
+  <p><?php echo $btitle;?></p>
+  <a href="<?php echo $bpermlaink;?>" class="btn line black">Learn more</a>
+ </div> 
+ <?php
+ 
+                    wp_reset_query();
+                    wp_reset_postdata();
+                    $i++; endwhile;    
+                    }
+                ?> 
+
+ 
       </div>
     </div>
      </div>
