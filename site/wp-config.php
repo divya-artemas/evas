@@ -40,6 +40,9 @@ define( 'DB_COLLATE', '' );
 //* Allow svg
 define('ALLOW_UNFILTERED_UPLOADS', true);
 
+//* Remove p tag
+define( 'WPCF7_AUTOP', false );
+
 /**#@+
  * Authentication unique keys and salts.
  *

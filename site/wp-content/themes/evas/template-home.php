@@ -40,7 +40,7 @@ get_header();
                       <?php                                
                         while( have_rows('banner_about') ): the_row();
                             $text_1     =  get_sub_field('text_1'); 
-                            $text_2   =  get_sub_field('text_2');  
+                            $text_2     =  get_sub_field('text_2');  
                       ?> 
                         <li>
                           <span><?php echo $text_1;?> </span>

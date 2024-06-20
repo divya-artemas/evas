@@ -47,11 +47,10 @@ function custom_body_class( $classes ) {
   } 
   elseif(is_page_template('template-about.php')) {
     $classes[] = 'about';
+  } 
+  elseif(is_page_template('template-contact.php')) {
+    $classes[] = 'contact-page-sec';
   }
- 
-  // elseif(is_page('ayurveda') || is_page_template('template-monsoon.php')) {
-  //   $classes[] = 'inner green-shade ayurveda';
-  // }
   // elseif(is_single('blogs')) {
   //   $classes[] = 'inner header-color';
   // } 
