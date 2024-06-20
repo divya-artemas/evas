@@ -19,62 +19,49 @@ get_header();
        <div class="right">
        <div class="contact-btn">
         <div class="flex">
-          <img src="img/phone-white.png" alt="">
+          <img src="<?php echo get_field('phone_icon');?>" alt="">
           <div class="contact-wrap">
-            <a href="#">+971 42660734</a>
-            <a href="#">+97142660734</a>
-            <a href="#">+971 055 708 9956</a>
+              <?php                                
+                while( have_rows('contact_numbers') ): the_row();
+                  $ct_number     =  get_sub_field('ct_number'); 
+              ?> 
+                <a href="tel:<?php echo $ct_number;?>"><?php echo $ct_number;?></a>
+              <?php endwhile;?>
+            </div>
           </div>
-          
-        </div>
        </div>
        <div class="contact-btn">
         <div class="flex">
-          <img src="img/mail-white.png" alt="">
+          <img src="<?php echo get_field('email_icon');?>" alt="">
           <div class="contact-wrap">
-            <a href="#">info@evasinternational.com</a>
-           
+            <a href="mailto:<?php echo get_field('ct_email');?>"><?php echo get_field('ct_email');?></a>
           </div>
-          
         </div>
-       </div>
        </div>
       </div>
     </div>
+    </div>
     <div class="location-sec">
       <div class="container">
-        <h3>Our Location</h3>
+        <h3><?php echo get_field('location_title');?></h3>
         <div class="location-list">
           <div class="flex">
+          <?php                                
+                while( have_rows('contact_locations') ): the_row();
+                  $l_image         =  get_sub_field('l_image'); 
+                  $location_name   =  get_sub_field('location_name'); 
+                  $l_address       =  get_sub_field('l_address'); 
+                  $l_link          =  get_sub_field('l_link'); 
+          ?> 
         <div class="location-block">
-          <img src="img/dubai.jpg" alt="">
-  
+          <img src="<?php echo $l_image;?>" alt="">  
           <div class="location-content">
-            <strong>DUBAI</strong>
-            <p>Suite No. 327 & 309, City Bay Business Centre, Abu Hail, P.O Box – 82631, Dubai</p>
-            <a href="#" class="btn line">GET LOCATION</a>
+            <strong><?php echo $location_name;?></strong>
+            <p><?php echo $l_address;?></p>
+            <a href="<?php echo $l_link;?>" class="btn line">GET LOCATION</a>
           </div>
         </div>
-        <div class="location-block">
-          <img src="img/abudubai.jpg" alt="">
-  
-          <div class="location-content">
-            <strong>ABU DHABI</strong>
-            <p>Suite No: 1601,P.O Box 25929, Kamala Tower,Khalidiya Street, Abu Dhabi</p>
-            <a href="#" class="btn line">GET LOCATION</a>
-          </div>
-        </div>
-        <div class="location-block">
-          <img src="img/sharajah.jpg" alt="">
-  
-          <div class="location-content">
-            <strong>SHARJAH</strong>
-            <p>Office No: Q1-04-006/A, P.O
-              Box 513424, SAIF Zone,
-              Sharjah</p>
-            <a href="#" class="btn line">GET LOCATION</a>
-          </div>
-        </div>
+         <?php endwhile;?>
           </div>
         </div>
       </div>
@@ -87,34 +74,27 @@ get_header();
     <div class="container">
       <div class="flex">
         <div class="left" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
-
-          <h3>Arrange
-            a call back</h3>
+          <h3><?php echo get_field('f_heading');?></h3>
           <ul>
-            <li>
-              <a href="#">DUBAI</a>
-            </li>
-            <li>
-              <a href="#">ABU DHABI</a>
-            </li>
-            <li>
-              <a href="#">SHARJAH</a>
-            </li>
+              <?php                                
+                while( have_rows('f_countries') ): the_row();
+                  $l_country      =  get_sub_field('l_country'); 
+                  $country_link   =  get_sub_field('country_link'); 
+              ?> 
+                <li>
+                  <a href="<?php echo $country_link;?>"><?php echo $l_country;?></a>
+                </li>
+            <?php endwhile;?>           
           </ul>
-          <p>Have a question, suggestion, or just want to say hi? Fill out the form below and we'll get back to you as soon as possible.
-          </p>
+          <p><?php echo get_field('f_content');?></p>
         </div>
         <div class="right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <?php echo do_shortcode(get_field("form_shortcode"));?>
         </div>
       </div>
-
-      
     </div>
   </div>
   <!-- Appointment-sec-content-->
-
-
 
     <?php endwhile; endif;?> 
     <?php get_footer();?>
