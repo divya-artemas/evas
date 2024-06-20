@@ -33,22 +33,20 @@ get_header();
      <?php endwhile;?>  
     </div>
                
-                <div class="bottom-banner">
-                  <div class="flex">
-                    <div class="left">
-                      <ul>
+      <div class="bottom-banner">
+          <div class="flex">
+              <div class="left">
+                <ul>
+                      <?php                                
+                        while( have_rows('banner_about') ): the_row();
+                            $text_1     =  get_sub_field('text_1'); 
+                            $text_2   =  get_sub_field('text_2');  
+                      ?> 
                         <li>
-                          <span>Since </span>
-                          <strong> 2013</strong>
+                          <span><?php echo $text_1;?> </span>
+                          <strong> <?php echo $text_2;?></strong>
                         </li>
-                        <li>
-                          <strong> 10+</strong>
-                          <span>Services </span>
-                        </li>
-                        <li>
-                          <strong> 550+</strong>
-                          <span>Clients </span>
-                        </li>
+                        <?php endwhile;?>                        
                       </ul>
                     </div>
                     <div class="right">
@@ -142,14 +140,14 @@ get_header();
      <!-- insight-section-start-->
      <div class="insights">
       <div class="container">
-      <span data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">Insights</span>
+      <span data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100"><?php echo get_field('in_title');?></span>
       <div class="news-letter"> 
       <div class="flex" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100">
         <div class="left">
-         <h2><?php echo get_field('in_title');?></h2>
+         <h2><?php echo get_field('in_heading');?></h2>
         </div>
         <div class="right">
-          <b><?php echo get_field('in_heading');?></b>
+          <b>Stay current with our latest insights</b>
           <input type="email" placeholder="Enter your email id">
           <img src="<?php bloginfo("template_url")?>/img/arrow.png" alt="">
         </div>
@@ -183,8 +181,7 @@ get_header();
   <p><?php echo $btitle;?></p>
   <a href="<?php echo $bpermlaink;?>" class="btn line black">Learn more</a>
  </div> 
- <?php
- 
+                <?php 
                     wp_reset_query();
                     wp_reset_postdata();
                     $i++; endwhile;    

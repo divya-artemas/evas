@@ -45,9 +45,9 @@ function custom_body_class( $classes ) {
   if(is_front_page()) {
     $classes[] = ' ';
   } 
-  // elseif(is_page_template('template-contact.php')) {
-  //   $classes[] = 'inner no-shade contact-us-page';
-  // }
+  elseif(is_page_template('template-about.php')) {
+    $classes[] = 'about';
+  }
  
   // elseif(is_page('ayurveda') || is_page_template('template-monsoon.php')) {
   //   $classes[] = 'inner green-shade ayurveda';

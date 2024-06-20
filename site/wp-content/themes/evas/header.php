@@ -22,7 +22,7 @@
     <?php wp_head(); ?>
   </head>
 
-  <body>
+  <body <?php body_class();?>>
     <!-- Header-section-end-->
     <div class="outer">
       <div class="header">
