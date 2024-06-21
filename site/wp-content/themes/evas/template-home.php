@@ -111,7 +111,7 @@ get_header();
                     $r_name      =  get_sub_field('r_name');  
                     $r_link_text =  get_sub_field('r_link_text');  
                     $r_file      =  get_sub_field('r_file');                   
-            ?> 
+        ?> 
           <div class="resources-book-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo $i;?>00">
             <img src="<?php echo $r_image;?>" alt="" />
             <div class="resources-content">
