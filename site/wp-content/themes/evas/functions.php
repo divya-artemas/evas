@@ -20,6 +20,10 @@ register_nav_menus( array('footer' => __('Footer Navigation', 'evas'),'responsiv
 register_nav_menus( array('footer_right' => __('Right Footer Navigation', 'evas'),'responsive' => __('Responsive Navigation', 'evas')));
 /*************** end wp_nav_menu footer **************************/
 
+/*************** wp_nav_menu footer *****************************/
+register_nav_menus( array('resource_p' => __('Resource Navigation', 'evas'),'responsive' => __('Responsive Navigation', 'evas')));
+/*************** end wp_nav_menu footer **************************/
+
 /*************** Theme Scripts   **************************/
 function evas_scripts_styles() {
   /*
@@ -50,6 +54,9 @@ function custom_body_class( $classes ) {
   } 
   elseif(is_page_template('template-contact.php')) {
     $classes[] = 'contact-page-sec';
+  }
+  elseif(is_page_template('template-service.php')) {
+    $classes[] = 'inner insight-page';
   }
   // elseif(is_single('blogs')) {
   //   $classes[] = 'inner header-color';
@@ -146,7 +153,18 @@ class themeslug_walker_nav_menu extends Walker_Nav_Menu {
      return $classes;
  }
  /****************End Menu active *****************************/ 
- 
+
+  
+ /****************Set active to <a> tag*****************************/  
+ function add_class_to_href( $classes, $item ) {
+  if ( in_array('current_page_item', $item->classes) ) {
+      $classes['class'] = 'active';
+  }
+  return $classes;
+}
+add_filter( 'nav_menu_link_attributes', 'add_class_to_href', 10, 2 );
+ /****************End <a> active *****************************/ 
+
  
 /** Adding svg supporting code **/
 function triq_myme_types($mime_types){
@@ -260,6 +278,44 @@ function cw_post_type_services() {
   /*Custom Post type end*/
 
 
+/****************************************
+ * Add custom taxonomy for Service *
+ ****************************************/
 
+add_action('init', 'service_categories_register');
+
+function service_categories_register() {
+$labels = array(
+    'name'                          => 'Service Categories',
+    'singular_name'                 => 'Service Category',
+    'search_items'                  => 'Search Service Categories',
+    'popular_items'                 => 'Popular Service Categories',
+    'all_items'                     => 'All Service Categories',
+    'parent_item'                   => 'Parent Service Category',
+    'edit_item'                     => 'Edit Service Category',
+    'update_item'                   => 'Update Service Category',
+    'add_new_item'                  => 'Add New Service Category',
+    'new_item_name'                 => 'New Service Category',
+    'separate_items_with_commas'    => 'Separate service categories with commas',
+    'add_or_remove_items'           => 'Add or remove service categories',
+    'choose_from_most_used'         => 'Choose from most used service categories'
+    );
+
+$args = array(
+    'label'                         => 'Toys Categories',
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    //'rewrite'                       => array( 'slug' => 'service', 'with_front' => true, 'hierarchical' => true ),
+    'query_var'                     => true
+);
+
+register_taxonomy( 'service_categories', 'services', $args );
+}
+
+/******************************************/
 
  ?>

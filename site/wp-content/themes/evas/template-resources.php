@@ -12,20 +12,19 @@ get_header();
       <div class="container">
     <h2 data-aos="fade-in" data-aos-duration="1000" data-aos-delay="100"><?php echo get_the_title();?></h2>
           <div class="resource-block">
-            <ul data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
-              <li>
-                <a href="<?php echo home_url();?>/resources" class="active">Excise Tax</a>
-              </li>
-              <li>
-                <a href="<?php echo home_url();?>/federal-tax-authority"> Federal Tax Authority</a>
-              </li>
-              <li>
-                <a href="<?php echo home_url();?>/federal-tax-procedures">Federal Tax Procedures</a>
-              </li>
-              <li>
-                <a href="<?php echo home_url();?>/value-added-tax">Value Added Tax</a>
-              </li>
-            </ul>
+              <?php
+                            $defaults = array(
+                                'menu' => 'Resource Menu',
+                                'after' => '',
+                                'items_wrap' => '<ul data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">%3$s</ul>',
+                                'theme_location' => 'resource_p',
+                                'depth' => 0,
+                                'container' => false,
+                                'walker'    => new themeslug_walker_nav_menu
+                                );
+                                wp_nav_menu($defaults);
+              ?>
+           
           </div>    
         </div>
   </div>

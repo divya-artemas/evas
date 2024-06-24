@@ -179,7 +179,7 @@ get_header();
  <div class="insight-set" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="<?php echo $i;?>00">
   <img src="<?php echo $bimage;?>" alt="">
   <p><?php echo $btitle;?></p>
-  <a href="<?php echo $bpermlaink;?>" class="btn line black">Learn more</a>
+  <a href="<?php echo $bpermalink;?>" class="btn line black">Learn more</a>
  </div> 
                 <?php 
                     wp_reset_query();
